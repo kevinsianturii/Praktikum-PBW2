@@ -1,7 +1,7 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
-
+{{-- 6706220055_Kevin Sianturi_4604 --}}
         <!-- Userame -->
         <div>
             <x-input-label for="username" :value="__('Username')" />
