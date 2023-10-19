@@ -1,22 +1,21 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Collections;
+use App\Http\Requests\UpdateCollectionRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\DataTables\CollectionsDataTable;
+
 
 class CollectionsController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return\Illuminate\Http\Response
      */
-    public function index()
+    public function index(CollectionsDataTable $dataTable)
     {
-        //
-        $collection = Collections::all();
-        return view('koleksi.daftarKoleksi', compact('collection'));
+        return $dataTable->render('koleksi.daftarKoleksi');
     }
 
     /**
@@ -24,30 +23,27 @@ class CollectionsController extends Controller
      */
     public function create()
     {
-        //
-        return view('koleksi.registrasi');
+        return view("koleksi.registrasi");
     }
 
     /**
      * Store a newly created resource in storage.
-     *@return\Illuminate\Http\Request
-     *@return\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        // 6706220055_Kevin Sianturi_4604
-        $validated = $request->validate([
-            'namaKoleksi'=> ['required', 'string', 'max:100'],
-            'jenisKoleksi'=> ['required', 'integer'],
-            'jumlahKoleksi'=> ['required', 'integer',],
+        $request->validate([
+            'namaKoleksi' => ['required', 'string', 'max:100'],
+            'jenisKoleksi' => ['required', 'numeric', 'in:1,2,3'],
+            'jumlahKoleksi' => ['required', 'integer'],
         ]);
-        $koleksi = new Collections();
-        $koleksi->namaKoleksi = $validated['namaKoleksi'];
-        $koleksi->jenisKoleksi = $validated['jenisKoleksi'];
-        $koleksi->jumlahKoleksi = $validated['jumlahKoleksi'];
+    
+        $collection = Collections::create([
+            'namaKoleksi' => $request->namaKoleksi,
+            'jenisKoleksi' => $request->jenisKoleksi,
+            'jumlahKoleksi' => $request->jumlahKoleksi,
+        ]);
 
-        $koleksi->save();
-        return redirect('/koleksi');
+        return redirect()->route("koleksi.daftarKoleksi");
     }
 
     /**
@@ -55,14 +51,13 @@ class CollectionsController extends Controller
      */
     public function show(Collections $collection)
     {
-        //
-        return view('koleksi.infoKoleksi',compact('collection'));
+        return view("koleksi.infoKoleksi", compact('collection'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Collections $collections)
+    public function edit(Collections $collection)
     {
         //
     }
@@ -70,7 +65,7 @@ class CollectionsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Collections $collections)
+    public function update(UpdateCollectionRequest $request, Collections $collection)
     {
         //
     }
@@ -78,7 +73,7 @@ class CollectionsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Collections $collections)
+    public function destroy(Collections $collection)
     {
         //
     }

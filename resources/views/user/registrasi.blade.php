@@ -1,99 +1,56 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-{{-- 6706220055_Kevin Sianturi_4604 --}}
-        <!-- Userame -->
-        <div>
-            <x-input-label for="username" :value="__('Username')" />
-            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('username')" class="mt-2" />
-        </div>
+@extends('layouts.app')
 
-          <!-- Fullname -->
-        <div>
-            <x-input-label for="fullname" :value="__('Fullname')" />
-            <x-text-input id="fullname" class="block mt-1 w-full" type="text" name="fullname" :value="old('fullname')" required autofocus autocomplete="fullname" />
-            <x-input-error :messages="$errors->get('username')" class="mt-2" />
-        </div>
+@section('content')
+<form class="max-w-4xl mx-auto" action="{{ route('user.storePengguna') }}"method="POST">
+    @csrf
+    <div class="relative z-0 w-full mb-6 group">
+        <input type="text" name="fullName" id="fullName" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="fullName" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Full Name</label>
+    </div>
+    <div class="relative z-0 w-full mb-6 group">
+        <input type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+    </div>
+    <div class="relative z-0 w-full mb-6 group">
+        <input type="password" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+    </div>
+    <div class="relative z-0 w-full mb-6 group">
+        <input type="password" name="password_confirmation" id="password_confirmation" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="password_confirmation" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
+        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+    </div>
+    <div class="relative z-0 w-full mb-6 group">
+        <input type="text" name="username" id="username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="username" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"> Username</label>
+    </div>
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 w-full mb-6 group">
+          <input type="text" name="address" id="address" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+          <label for="address" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Alamat</label>
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+          <input type="tel" name="phoneNumber" id="phoneNumber" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+          <label for="phoneNumber" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nomor Telepon</label>
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+          <input type="date" name="birthdate" id="birthdate" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+          <label for="birthdate" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tanggal Lahir</label>
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+          <input type="text" name="agama" id="agama" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+          <label for="agama" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Agama</label>
+      </div>
+      
+      <label for="jenisKelamin" class="sr-only">Jenis Kelamin</label>
+      <select name="jenisKelamin" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+        <option selected disabled>Pilih Jenis Kelamin</option>
+        <option value="0">Pria</option>
+        <option value="1">Wanita</option>
+      </select>
+      
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <!-- Address -->
-        <div>
-            <x-input-label for="address" :value="__('Alamat')" />
-            <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autofocus autocomplete="address" />
-            <x-input-error :messages="$errors->get('address')" class="mt-2" />
-        </div>
-
-         <!-- Birtdate -->
-         <div>
-            <x-input-label for="date" :value="__('Tanggal Lahir')" />
-            <x-text-input id="date" class="block mt-1 w-full" type="date" name="birtdate" :value="old('birtdate')" required autofocus autocomplete="birtdate" />
-            <x-input-error :messages="$errors->get('birtdate')" class="mt-2" />
-        </div>
-        
-
-         <!-- phoneNumber -->
-         <div>
-            <x-input-label for="phoneNumber" :value="__('No Telepon')" />
-            <x-text-input id="phoneNumber" class="block mt-1 w-full" type="text" name="phoneNumber" :value="old('phoneNumber')" required autofocus autocomplete="phoneNumber" />
-            <x-input-error :messages="$errors->get('phoneNumber')" class="mt-2" />
-        </div>
-
-          <!-- agama -->
-          <div>
-            <x-input-label for="agama" :value="__('Agama')" />
-            <x-text-input id="agama" class="block mt-1 w-full" type="text" name="agama" :value="old('agama')" required autofocus autocomplete="agama" />
-            <x-input-error :messages="$errors->get('agama')" class="mt-2" />
-        </div>
-{{-- 6706220055_Kevin Sianturi_46-04 --}}
-          <!-- jenis_kelamin -->
-        <div class="mt-4">
-            <x-input-label for="jenis_kelamin" :value="__('Jenis Kelamin')" />
-            <select name="jenis_kelamin"
-                class="w-full mt-2 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                <option disabled selected>Pilih Jenis Kelamin</option>
-                <option value="0" {{ old('jenis_kelamin') == '0' ? 'selected' : '' }}>Pria</option>
-                <option value="1" {{ old('jenis_kelamin') == '1' ? 'selected' : '' }}>Wanita</option>
-            </select>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+  </form>
+@endsection

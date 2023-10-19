@@ -1,38 +1,35 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('koleksi.storeKoleksi') }}">
-        @csrf
-        <div class="mt-4">
-            <x-input-label for="namaKoleksi" :value="__('Nama Koleksi')" />
-            <x-text-input id="namaKoleksi" class="block mt-1 w-full" type="text" name="namaKoleksi" :value="old('namaKoleksi')" required autocomplete="namaKoleksi" />
-            <x-input-error :messages="$errors->get('namaKoleksi')" class="mt-2" />
-        </div>
-{{-- 6706220055_Kevin Sianturi_4604 --}}
+@extends('layouts.app')
 
-        <div class="mt-4">
-            <x-input-label for="jenisKoleksi" :value="__('Jenis Koleksi')" />
-            <select id="jenisKoleksi" type="tinyInteger" name="jenisKoleksi" :value="old('jenisKoleksi')" required autofocus autocomplete="gender" class="w-full mt-2 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                class="w-full mt-2 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                <option disabled selected>Pilih Jenis Koleksi</option>
-                <option value="1" {{ old('jenisKoleksi') == '1' ? 'selected' : '' }}>Buku</option>
-                <option value="2" {{ old('jenisKoleksi') == '2' ? 'selected' : '' }}>Majalh</option>
-                <option value="3" {{ old('jenisKoleksi') == '3' ? 'selected' : '' }}>Cakram Digital</option>
-            </select>
+@section('content')
+<form class="max-w-4xl mx-auto" action="{{ route('koleksi.storeKoleksi') }}"method="POST">
+    @csrf
+    <div class="relative z-0 w-full mb-6 group">
+        <input type="text" name="namaKoleksi" id="namaKoleksi" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="namaKoleksi" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nama Koleksi</label>
+    </div>
+    <div class="mt-4">
+        <x-input-label for="jenisKoleksi" :value="__('Jenis Koleksi')" />
+        <div>
+            <label for="0" class="text-grey">Buku</label>
+        <input id="jenisKoleksi" type="radio" name="jenisKoleksi" required value="1" />
         </div>
-
-        <div class="mt-4">
-            <x-input-label for="jumlahKoleksi" :value="__('Jumlah Koleksi')" />
-            <x-text-input id="jumlahKoleksi" class="block mt-1 w-full" type="number" name="jumlahKoleksi" :value="old('jumlahKoleksi')" required autocomplete="jumlahKoleksi" />
-            <x-input-error :messages="$errors->get('jumlahKoleksi')" class="mt-2" />
+        <div>
+            <label for="1" class="text-grey">Majalah</label>
+        <input id="jenisKoleksi" type="radio" name="jenisKoleksi" required value="2" />
         </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
+        <div>
+            <label for="1" class="text-grey">Cakram Digital</label>
+        <input id="jenisKoleksi" type="radio" name="jenisKoleksi" required value="3" />
         </div>
-    </form>
-</x-guest-layout>
+        <x-input-error :messages="$errors->get('jenisKoleksi')" class="mt-2" />
+    </div>
+    <div class="relative z-0 w-full mb-6 group">
+        <input type="number" name="jumlahKoleksi" id="jumlahKoleksi" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="jumlahKoleksi" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Jumlah Koleksi</label>
+        <x-input-error :messages="$errors->get('jumlahKoleksi')" class="mt-2" />
+    </div>
+    
+
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+  </form>
+@endsection

@@ -7,17 +7,34 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\view;
+use App\DataTables\UsersDataTable;
+
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return\Illuminate\Http\Request
      */
-    public function index()
+    // public function index()
+    // {
+    //     //
+    //     $users = User::all();
+    //     return view('user.daftarPengguna', compact('users'));
+    // }
+    public function index(UsersDataTable $dataTable)
     {
-        $users = User::all();
-        return view('user.daftarPengguna',compact('users'));
+        return $dataTable->render('user.daftarPengguna');
     }
+// class UserController extends Controller
+// {
+//     /**
+//      * Display a listing of the resource.
+//      * @return\Illuminate\Http\Request
+//      */
+//     public function index()
+//     {
+//         $users = User::all();
+//         return view('user.daftarPengguna',compact('users'));
+//     }
 
     /**
      * Show the form for creating a new resource.
