@@ -36,10 +36,6 @@
                                     <td class="p-4">{{ $user->birthdate }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="p-4">Agama</th>
-                                    <td class="p-4">{{ $user->agama }}</td>
-                                </tr>
-                                <tr>
                                     <th class="p-4">Gender</th>
                                     <td class="p-4"> @if (   $user->jenisKelamin == 0 )
                                         <span>Pria</span>  

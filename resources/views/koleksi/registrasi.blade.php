@@ -10,15 +10,15 @@
     <div class="mt-4">
         <x-input-label for="jenisKoleksi" :value="__('Jenis Koleksi')" />
         <div>
-            <label for="0" class="text-grey">Buku</label>
+            <label for="0" class="text-white">Buku</label>
         <input id="jenisKoleksi" type="radio" name="jenisKoleksi" required value="1" />
         </div>
         <div>
-            <label for="1" class="text-grey">Majalah</label>
+            <label for="1" class="text-white">Majalah</label>
         <input id="jenisKoleksi" type="radio" name="jenisKoleksi" required value="2" />
         </div>
         <div>
-            <label for="1" class="text-grey">Cakram Digital</label>
+            <label for="1" class="text-white">Cakram Digital</label>
         <input id="jenisKoleksi" type="radio" name="jenisKoleksi" required value="3" />
         </div>
         <x-input-error :messages="$errors->get('jenisKoleksi')" class="mt-2" />

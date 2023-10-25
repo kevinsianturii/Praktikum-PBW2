@@ -34,12 +34,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/userRegistration', [UserController::class, 'create'])->name('user.registrasi');
     Route::post('/userStore', [UserController::class, 'store'])->name('user.storePengguna');
     Route::get('/userView/{user}', [UserController::class, 'show'])->name('user.infoPengguna'); 
+    Route::get('/editUser/{user}', [UserController::class, 'edit'])->name('user.editUser');
+    Route::post('/updateUser/{user}', [UserController::class, 'update'])->name('user.editUpdate');
+   
 
 //Koleksi buku
     Route::get('/koleksi', [CollectionsController::class, 'index'])->name('koleksi.daftarKoleksi');
     Route::get('/koleksiTambah', [CollectionsController::class, 'create'])->name('koleksi.registrasi');
     Route::post('/koleksiStore', [CollectionsController::class, 'store'])->name('koleksi.storeKoleksi');
     Route::get('/koleksiView/{collection}', [CollectionsController::class, 'show'])->name('koleksi.infoKoleksi');
+    Route::post('/updateKoleksi/{collection}', [CollectionsController::class, 'show'])->name('koleksi.updateKoleksi');
+    Route::get('/editKoleksi/{collection}', [CollectionsController::class, 'edit'])->name('koleksi.editKoleksi');
+   
+
+    Route::get('/getAllCollections', [CollectionController::class,'getAllCollections'])->middleware(['auth', 'verified']);
 
 // 6706220055_Kevin Sianturi_4604
 

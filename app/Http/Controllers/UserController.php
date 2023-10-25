@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\view;
 use App\DataTables\UsersDataTable;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -92,19 +93,36 @@ class UserController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @return\Illuminate\Http\Request
+     * 
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        // $user = User::find($id);
+        return view('user.editUser', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        
+        $validatedData = $request->validate([
+            // 'username' => ['required', 'string', 'max:100'],
+            'fullname' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:255'], 
+            // 'password' => 'nullable',
+            'address' => ['required', 'string', 'max:1000'],
+            'birtdate' => ['required', 'date'],
+            'phoneNumber' => ['required', 'string', 'max:20'],
+            // 'agama' => ['required', 'string', 'max:20'],
+            // 'jenis_kelamin' => ['required', 'numeric' ,'in:0,1'],
+        ]);
+       
+        $userUpdate = User::findOrFail($request->id)->update($validatedData);
+      
+
+        return redirect()->route('user.daftarPengguna');
     }
 
     /**
