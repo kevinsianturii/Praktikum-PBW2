@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+// 6706220055_Kevin Sianturi_4604
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -43,13 +43,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/koleksiTambah', [CollectionsController::class, 'create'])->name('koleksi.registrasi');
     Route::post('/koleksiStore', [CollectionsController::class, 'store'])->name('koleksi.storeKoleksi');
     Route::get('/koleksiView/{collection}', [CollectionsController::class, 'show'])->name('koleksi.infoKoleksi');
-    Route::post('/updateKoleksi/{collection}', [CollectionsController::class, 'show'])->name('koleksi.updateKoleksi');
+    Route::post('/updateKoleksi/{collection}', [CollectionsController::class, 'update'])->name('koleksi.updateKoleksi');
     Route::get('/editKoleksi/{collection}', [CollectionsController::class, 'edit'])->name('koleksi.editKoleksi');
    
 
     Route::get('/getAllCollections', [CollectionController::class,'getAllCollections'])->middleware(['auth', 'verified']);
 
-// 6706220055_Kevin Sianturi_4604
+
 
 });
 

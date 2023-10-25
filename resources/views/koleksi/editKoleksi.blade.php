@@ -1,3 +1,4 @@
+{{-- 6706220055-Kevin Sianturi-4604 --}}
 <x-guest-layout>
     <form method="POST" action="{{ route('koleksi.updateKoleksi', $collection->id) }}">
         @csrf

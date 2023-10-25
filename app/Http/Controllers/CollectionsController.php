@@ -62,7 +62,7 @@ class CollectionsController extends Controller
     {
         return view("koleksi.editKoleksi", compact("collection"));
     }
-
+    // 6706220055_Kevin Sianturi_4604 
     /**
      * Update the specified resource in storage.
      */

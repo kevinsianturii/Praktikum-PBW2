@@ -106,7 +106,7 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        
+       // 6706220055_Kevin Sianturi_4604 
         $validatedData = $request->validate([
             // 'username' => ['required', 'string', 'max:100'],
             'fullname' => ['required', 'string', 'max:100'],
